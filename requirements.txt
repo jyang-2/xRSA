@@ -1,0 +1,7 @@
+numpy>=1.21.6
+xarray>=2023.5.0
+scipy>=1.8.1
+attrs>=23.1.0
+scikit-learn>=1.2.2
+pandas>=1.4.2
+tifffile>=2023.4.12
