@@ -4,8 +4,8 @@ import matplotlib as plt
 
 def plot_rsm_heatmap(da_rsm):
     ds_rdm_sorted = (da_rsm
-                     .assign_coords(row_occ=('trial_row', range(ds_rdm_concat.dims['trial_row'])),
-                                    col_occ=('trial_col', range(ds_rdm_concat.dims['trial_col']))
+                     .assign_coords(row_occ=('trial_row', range(da_rsm.dims['trial_row'])),
+                                    col_occ=('trial_col', range(da_rsm.dims['trial_col']))
                                     )
                      .set_index(trial_row=['row_stim', 'row_occ'],
                                 trial_col=['col_stim', 'col_occ'])
