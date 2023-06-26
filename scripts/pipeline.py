@@ -1,4 +1,4 @@
-"""Checks folder contents for expected analysis output files."""
+"""Run all steps to generate RDMs from suite2p outputs."""
 from pathlib import Path
 import numpy as np
 import xarray as xr
