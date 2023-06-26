@@ -921,12 +921,14 @@
   <div class="doc doc-contents ">
   
       <p>Computes indices for list of stimuli.</p>
-<p>Example with stim_list = 'AAABBBCCCAAABBB':
-  -       stim = AAA BBB CCC AAA BBB
-  -   stim_occ = 012 012 012 345 345
-  -    run_idx = 000 111 222 333 444
-  - idx_in_run = 012 012 012 012 012
-  -    run_occ = 000 111 222 333 444</p>
+<p>Example with stim_list = 'AAABBBCCCAAABBB':</p>
+<ul>
+<li>stim = AAA BBB CCC AAA BBB</li>
+<li>stim_occ = 012 012 012 345 345</li>
+<li>run_idx = 000 111 222 333 444</li>
+<li>idx_in_run = 012 012 012 012 012</li>
+<li>run_occ = 000 111 222 333 444</li>
+</ul>
 
   <p><strong>Parameters:</strong></p>
   <table>
@@ -1028,16 +1030,18 @@
 <span class="normal">112</span>
 <span class="normal">113</span>
 <span class="normal">114</span>
-<span class="normal">115</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">index_stimuli</span><span class="p">(</span><span class="n">stim_list</span><span class="p">,</span> <span class="n">include_trial_idx</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="normal">115</span>
+<span class="normal">116</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">index_stimuli</span><span class="p">(</span><span class="n">stim_list</span><span class="p">,</span> <span class="n">include_trial_idx</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Computes indices for list of stimuli.</span>
 
 <span class="sd">    Example with stim_list = &#39;AAABBBCCCAAABBB&#39;:</span>
-<span class="sd">      -       stim = AAA BBB CCC AAA BBB</span>
-<span class="sd">      -   stim_occ = 012 012 012 345 345</span>
-<span class="sd">      -    run_idx = 000 111 222 333 444</span>
-<span class="sd">      - idx_in_run = 012 012 012 012 012</span>
-<span class="sd">      -    run_occ = 000 111 222 333 444</span>
+
+<span class="sd">    -       stim = AAA BBB CCC AAA BBB</span>
+<span class="sd">    -   stim_occ = 012 012 012 345 345</span>
+<span class="sd">    -    run_idx = 000 111 222 333 444</span>
+<span class="sd">    - idx_in_run = 012 012 012 012 012</span>
+<span class="sd">    -    run_occ = 000 111 222 333 444</span>
 
 <span class="sd">    Args:</span>
 <span class="sd">        stim_list (List[str]): List of stimuli</span>
