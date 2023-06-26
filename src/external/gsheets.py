@@ -15,7 +15,7 @@ def csv_link_from_sheet_id(sheet_id: str, gid: int):
         gid (int): sheet id (default 0 for 1st sheet)
 
     Returns:
-        str: .csv export url
+        gsheet_link (str): .csv export url
     """
     # return f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid:d}"
     gsheet_link = f"https://docs.google.com/spreadsheets/d/{sheet_id}/export?format=csv&gid={gid:d}"
@@ -48,7 +48,7 @@ def browser2csv(url):
         url (str): browser url, copied when editing google spreadsheet in browser
 
     Returns:
-        str: link to use when reading spreadsheet into pandas
+        csv_link_from_sheet_id (str): link to use when reading spreadsheet into pandas
 
     Examples:
         >>>
