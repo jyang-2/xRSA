@@ -1017,10 +1017,7 @@
   </table>
       <p>Example::</p>
 <div class="highlight"><pre><span></span><code>stim_list = &quot;AAABBBCCC&quot;
-
 labels, runs, start_locs, end_locs = get_run_limits(stim_list)
-labels
-[ ]
 </code></pre></div>
 
       <details class="quote">
@@ -1052,10 +1049,7 @@ labels
 <span class="normal">144</span>
 <span class="normal">145</span>
 <span class="normal">146</span>
-<span class="normal">147</span>
-<span class="normal">148</span>
-<span class="normal">149</span>
-<span class="normal">150</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_run_limits</span><span class="p">(</span><span class="n">stim_list</span><span class="p">):</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">get_run_limits</span><span class="p">(</span><span class="n">stim_list</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Given a list of stimuli with repeats, compute the location of labels for stimulus blocks.</span>
 
 <span class="sd">    `get_run_limits(&quot;AAABBBCCC&quot;)` returns:</span>
@@ -1077,10 +1071,7 @@ labels
 <span class="sd">    Example::</span>
 
 <span class="sd">        stim_list = &quot;AAABBBCCC&quot;</span>
-
 <span class="sd">        labels, runs, start_locs, end_locs = get_run_limits(stim_list)</span>
-<span class="sd">        labels</span>
-<span class="sd">        [ ]</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">labels</span><span class="p">,</span> <span class="n">runs</span> <span class="o">=</span> <span class="n">find_runs</span><span class="p">(</span><span class="n">stim_list</span><span class="p">)</span>
     <span class="n">end_locs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">runs</span><span class="p">)</span>
