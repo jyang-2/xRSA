@@ -5,12 +5,12 @@ from scipy.stats import zscore
 from . import helpers
 
 
-def outputs_2_xarray_base(stat_file):
+def outputs_2_xarray_base(stat_file, iscell_filename=None):
     """Converts suite2p outputs into an xarray dataset, no extra metadata added.
 
     Args:
         stat_file (Path): path to stat.npy file in folder holding suite2p outputs.
-
+        iscell_filename: filename of iscell(_*).npy in same folder as stat_file
     Returns:
         (xr.Dataset): ds_suite2p_outputs
     """
@@ -22,7 +22,10 @@ def outputs_2_xarray_base(stat_file):
     Fc = F - 0.7 * Fneu
     n_cells, T = Fc.shape
 
-    iscell, cellprob = np.load(stat_file.with_name('iscell.npy'), allow_pickle=True).T
+    if iscell_filename is None:
+        iscell_filename = 'iscell.npy'
+
+    iscell, cellprob = np.load(stat_file.with_name(iscell_filename), allow_pickle=True).T
     iscell = iscell.astype('int').squeeze()
     cellprob = cellprob.squeeze()
 
