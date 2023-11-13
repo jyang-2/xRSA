@@ -78,7 +78,7 @@ def load_single_plane_reg_tiffs_as_array(reg_dir, channel=0):
     Returns:
          (np.ndarray): registered movie (TYX axis order)
     """
-    tiff_files = sorted(list(reg_dir.glob(f"file*_chan{channel}.tif")),
+    tiff_files = sorted(list(reg_dir.joinpath('reg_tif').glob(f"file*_chan{channel}.tif")),
                         key=lambda x: get_reg_tiff_index(x))
 
     stacks = []
