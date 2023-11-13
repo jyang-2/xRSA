@@ -1,9 +1,62 @@
 import xarray as xr
 from sklearn import metrics
 import pandas as pd
+import numpy as np
 
 
-def check_input_to_rdm(ds_input):
+def compute_rdm(ds_respvec, metric='correlation', input_dim_ord=None,
+                output_dim_names=None, output_suffixes=None):
+    """Compute representation dissimilarity matrix w/ specified dimension order.
+
+    Args:
+        ds_respvec (Union[xr.Dataset, xr.DataArray]):
+        metric (str): pairwise distance metric (see `sklearn.metrics.pairwise_distances`)
+        input_dim_ord (List[str]): input dimension order
+          - if input_dim_ord has dims (trials, cells), then output_dim_ord has dims (trials, trials)
+        output_dim_names (List[str]): output dimension names for RDM with shape `(input_dim_ord[0],
+            input_dim_ord[0])`
+        output_suffixes (List[str]): suffixes used to generate output dim. names
+            - default ['_row', '_col']
+            - used only if output_dim_names = `None`
+    Returns:
+        ds_rdm (Union[xr.Dataset, xr.DataArray]):
+
+    Notes:
+        If `input_dim_ord = ['trials', 'cells']` and `output_suffixes = ['_row', '_col']`, then
+        output_dim_ord = ['trials_row', 'trials_col']
+    """
+    if input_dim_ord is None:  # input dimensions default to the first 2
+        dims = list(ds_respvec.dims.keys())
+        input_dim_ord = dims[:2]
+    if output_dim_names is None:  # construct output_dim_names
+        if output_suffixes is None:
+            output_suffixes = ['_row', '_col']
+        output_dim_names = [f"{input_dim_ord[0]}{suffix}" for suffix in output_suffixes]
+    # construct output dimension names
+
+    # print(input_dim_ord)
+    # print(output_dim_names)
+
+    ds_rdm = xr.apply_ufunc(
+            metrics.pairwise_distances,
+            ds_respvec,
+            input_core_dims=[input_dim_ord],
+            output_core_dims=[output_dim_names],
+            vectorize=True,
+            kwargs=dict(metric=metric, force_all_finite=False),
+            keep_attrs=True)
+
+    # copy coordinates along the 1st intput dimension to the output dimensions
+    coords = {output_dim: (output_dim, ds_respvec.indexes[input_dim_ord[0]].copy())
+              for output_dim in output_dim_names}
+
+    ds_rdm = ds_rdm.assign_coords(coords)
+
+    ds_rdm.attrs['rdm.metric'] = metric
+    return ds_rdm
+
+
+def check_input_to_respvec_rdm(ds_input):
     """Check that the input to `compute_trial_respvec_rdm` has the required structure.
 
     If `trials` is single index, check that
@@ -98,7 +151,7 @@ def compute_trial_respvec_rdm(ds_respvec, metric='correlation'):
             input_core_dims=[['trials', 'cells']],
             output_core_dims=[['trial_row', 'trial_col']],
             vectorize=True,
-            kwargs=dict(metric=metric),
+            kwargs=dict(metric=metric, force_all_finite=False),
             keep_attrs=True
             )
 
@@ -138,6 +191,66 @@ def compute_trial_respvec_rdm(ds_respvec, metric='correlation'):
                 col_trial_idx=('trial_col', trial_idx)
                 )
 
-    ds_rdm.attrs['distance_metric'] = metric
+    ds_rdm.attrs['rdm.metric'] = metric
 
     return ds_rdm
+
+
+def sort_trial_rdm_by_stim_ord(ds_rdm, stim_ord, use_stim_occ=True):
+    """Sort ds_rdm to match desired stimulus ordering, in coordinates row_stim and col_stim.
+
+    ds_rdm (xr.Dataset): has dimensions ('trial_row', 'trial_col'), and coords ('row_stim',
+      'col_stim')
+    stim_ord (list): stimulus order for coords ('row_stim', 'col_stim')
+
+    """
+    if use_stim_occ:
+        df_row = ds_rdm.trial_row.to_dataframe().reset_index(drop=True)
+        df_row['row_stim'] = pd.Categorical(df_row['row_stim'], ordered=True,
+                                            categories=stim_ord)
+        row_idx = df_row.sort_values(['row_stim', 'row_stim_occ']).index.to_list()
+
+        df_col = ds_rdm.trial_col.to_dataframe().reset_index(drop=True)
+        df_col['col_stim'] = pd.Categorical(df_col['col_stim'], ordered=True,
+                                            categories=stim_ord)
+        col_idx = df_col.sort_values(['col_stim', 'col_stim_occ']).index.to_list()
+    else:
+        row_idx = np.argsort([stim_ord.index(item) for item in ds_rdm.row_stim.to_numpy()])
+        col_idx = np.argsort([stim_ord.index(item) for item in ds_rdm.col_stim.to_numpy()])
+
+    ds_rdm_sorted = ds_rdm.isel(trial_row=row_idx).isel(trial_col=col_idx)
+    return ds_rdm_sorted
+
+
+def sort_stim_rdm_by_stim_ord(ds_stim_rdm, stim_ord, row_coord='stim_row', col_coord='stim_col'):
+    """Sort ds_stim_rdm to match desired stimulus ordering."""
+
+    row_idx = np.argsort([stim_ord.index(item) for item in ds_stim_rdm[row_coord].to_numpy()])
+    col_idx = np.argsort([stim_ord.index(item) for item in ds_stim_rdm[col_coord].to_numpy()])
+
+    ds_stim_rdm_sorted = ds_stim_rdm[{row_coord: row_idx}][{col_coord: col_idx}]
+    return ds_stim_rdm_sorted
+
+
+def prepare_to_align(ds_rdm):
+    """Set indexes and drop coords before using xr.align"""
+    ds_rdm_prepared = (ds_rdm
+                       .reset_index(['trial_row', 'trial_col'])
+                       .reset_coords(['row_trial_idx', 'col_trial_idx'], drop=True)
+                       .set_xindex(coord_names=['row_stim', 'row_stim_occ'])
+                       .set_xindex(coord_names=['col_stim', 'col_stim_occ'])
+                       .sortby('trial_row')
+                       .sortby('trial_col')
+                       )
+    return ds_rdm_prepared
+
+
+def acq_attrs_2_coords(ds_rdm):
+    """Copy Acquisition fields from attrs (use before concatenating acquisitions)"""
+    attrs = ds_rdm.attrs.copy()
+
+    return ds_rdm.assign_coords(
+            date_imaged=attrs['acq.date_imaged'],
+            fly_num=attrs['acq.fly_num'],
+            thorimage_name=attrs['acq.thorimage_name']
+            )
