@@ -138,7 +138,7 @@ def load_combined_reg_tiffs(stat_file, channel=0):
     ignore_flyback = ops['ignore_flyback']
     good_planes = [plane for plane in range(nplanes) if plane not in ignore_flyback]
 
-    T, Lz, Ly, Lx = get_dims(stat_file, without_flyback_planes=True)
+    time, Lz, Ly, Lx = get_dims(stat_file, without_flyback_planes=True)
 
     # load registered tiffs into (frames, z, y, x) np.array
     plane_folders = [stat_file.parent.with_name(f"plane{plane}") for plane in good_planes]
@@ -148,7 +148,7 @@ def load_combined_reg_tiffs(stat_file, channel=0):
                   for folder in plane_folders], axis=1)
 
     reg_stack = xr.DataArray(data=reg_stack,
-                             dims=['T', 'Z', 'Y', 'X'],
+                             dims=['time', 'Z', 'Y', 'X'],
                              coords=dict(
                                      Z=good_planes,
                                      Y=range(Ly),
