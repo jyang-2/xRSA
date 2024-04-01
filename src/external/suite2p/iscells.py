@@ -8,6 +8,12 @@ from datetime import datetime
 
 @define(kw_only=True)
 class IsCell:
+    """Class for loading 'iscell.npy' files, and getting metadata
+
+    Examples:
+        >>> stat_file = Path("stat.npy")
+        >>> iscell = IsCell(stat_file)
+    """
     iscell_file: Path = field(converter=Path)
     iscell: np.array = field(init=False)
     n_total_rois: int = field(init=False)
@@ -31,6 +37,13 @@ class IsCell:
 def get_iscell_filestats(iscell_file: Path) -> dict:
     """Given a file path to an iscell.npy file, get the file creation and modification times.
 
+    Args:
+        iscell_file (Path): Path to 'iscell.npy'
+
+    Returns:
+        file_stats (dict): Dictionary containing `st_ctime` (creation time) and `st_mtime`\
+           (modification time)
+
     """
 
     st = iscell_file.stat()
@@ -41,7 +54,14 @@ def get_iscell_filestats(iscell_file: Path) -> dict:
 
 
 def get_iscell_roistats(iscell_file: Path) -> dict:
-    """Get the # of selected rois and total rois from an iscell.npy file."""
+    """Get the # of selected rois and total rois from an iscell.npy file.
+
+    Args:
+        iscell_file (Path): path to 'iscell.npy' file
+
+    Returns:
+        dict: has keys 'n_total_rois' and 'n_iscell_rois'
+    """
 
     iscell = np.load(iscell_file)
     return {'n_total_rois': iscell.shape[0],
@@ -52,14 +72,17 @@ def get_iscell_stats(iscell_file: Path) -> dict:
     return {**get_iscell_filestats(iscell_file), **get_iscell_roistats(iscell_file)}
 
 
-# def make_iscell_fluorescence(iscell_file, parent_folder='rastermap'):
-#     """Create a folder w/ the same name as iscell_file in rastermap folder. Copy over selected
-#     Fc_zscore.npy where iscell == 1, and """
-#     x = re.search("file(\d+)_chan\d", tiff_file.name)
-
-
 def get_iscell_suffix(iscell_filename: str) -> str:
-    """Given an iscell*.npy file, get the suffix of the filename."""
+    """Given an iscell*.npy file, get the suffix of the filename.
+
+    If iscell_filename is 'iscell.npy', suffix=None
+
+    Args:
+        iscell_filename (str): filename of 'iscell_{{suffix}}.npy' or 'iscell.npy' file
+
+    Returns:
+        suffix (string): sufffix from `iscell_filename`, where suffix is 'iscell_{{suffix}}.npy'
+    """
 
     pattern = 'iscell_(?P<suffix>.+).npy'
     if iscell_filename == 'iscell.npy' or iscell_filename == 'iscell':
@@ -76,6 +99,14 @@ def get_iscell_suffix(iscell_filename: str) -> str:
 
 
 def all_iscell_stats_from_stat_file(stat_file: Path, astype='list'):
+    """Given a stat.npy, gets metadata for all 'iscell(_{{suffix}}).npy' files in the same
+    directory
+
+    stat_file (Path): Path to 'stat.npy' file
+
+    Returns:
+        iscell_stats ([list|dict]): metadata for all 'iscell(_{{suffix}}.npy' files
+    """
     iscell_files = sorted(list(stat_file.parent.glob("iscell*.npy")))
 
     iscell_stats = [get_iscell_stats(file) for file in iscell_files]
