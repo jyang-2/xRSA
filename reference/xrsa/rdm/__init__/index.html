@@ -1,0 +1,3316 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../../qc/">
+      
+      
+        <link rel="next" href="../../respvec/">
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-9.1.17">
+    
+    
+      
+        <title>rdm - xRSA</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.26e3688c.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xrsa.rdm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="xRSA" class="md-header__button md-logo" aria-label="xRSA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            xRSA
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              rdm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../../../docs/index.md" class="md-tabs__link">
+      Home
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../expt/__init__/" class="md-tabs__link md-tabs__link--active">
+        Code Reference
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="xRSA" class="md-nav__button md-logo" aria-label="xRSA" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    xRSA
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/index.md" class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          Code Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          Code Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../expt/__init__/">expt</a>
+          
+            <label for="__nav_2_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_1">
+          <span class="md-nav__icon md-icon"></span>
+          expt
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../expt/acquisition/" class="md-nav__link">
+        acquisition
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../external/__init__/">external</a>
+          
+            <label for="__nav_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          external
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/gsheets/" class="md-nav__link">
+        gsheets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../external/rastermap/__init__/">rastermap</a>
+          
+            <label for="__nav_2_2_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_2">
+          <span class="md-nav__icon md-icon"></span>
+          rastermap
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/rastermap/convert/" class="md-nav__link">
+        convert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/rastermap/core/" class="md-nav__link">
+        core
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/rastermap/embedding/" class="md-nav__link">
+        embedding
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/rastermap/io/" class="md-nav__link">
+        io
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../external/suite2p/__init__/">suite2p</a>
+          
+            <label for="__nav_2_2_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          suite2p
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/suite2p/convert/" class="md-nav__link">
+        convert
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/suite2p/helpers/" class="md-nav__link">
+        helpers
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/suite2p/iscells/" class="md-nav__link">
+        iscells
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/suite2p/reg/" class="md-nav__link">
+        reg
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/suite2p/registration/" class="md-nav__link">
+        registration
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../external/tom/__init__/">tom</a>
+          
+            <label for="__nav_2_2_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          tom
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../external/tom/convert/" class="md-nav__link">
+        convert
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../multispace/__init__/">multispace</a>
+          
+            <label for="__nav_2_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3">
+          <span class="md-nav__icon md-icon"></span>
+          multispace
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_1" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../multispace/io/__init__/">io</a>
+          
+            <label for="__nav_2_3_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          io
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../multispace/io/vcf/" class="md-nav__link">
+        vcf
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../ryeutils/__init__/">ryeutils</a>
+          
+            <label for="__nav_2_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_4">
+          <span class="md-nav__icon md-icon"></span>
+          ryeutils
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../ryeutils/main/" class="md-nav__link">
+        main
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../setup/" class="md-nav__link">
+        setup
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../stimuli/__init__/">stimuli</a>
+          
+            <label for="__nav_2_6">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_6">
+          <span class="md-nav__icon md-icon"></span>
+          stimuli
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/fix/" class="md-nav__link">
+        fix
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/main/" class="md-nav__link">
+        main
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6_3" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../stimuli/natmix/__init__/">natmix</a>
+          
+            <label for="__nav_2_6_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_6_3">
+          <span class="md-nav__icon md-icon"></span>
+          natmix
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/natmix/control1_top2_ramps/" class="md-nav__link">
+        control1_top2_ramps
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/natmix/kiwi_ea_eb_only/" class="md-nav__link">
+        kiwi_ea_eb_only
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../../stimuli/ospace/__init__/">ospace</a>
+          
+            <label for="__nav_2_6_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_6_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_6_4">
+          <span class="md-nav__icon md-icon"></span>
+          ospace
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/ospace/megamat17/" class="md-nav__link">
+        megamat17
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../stimuli/ospace/validation2/" class="md-nav__link">
+        validation2
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../validate_xarray/" class="md-nav__link">
+        validate_xarray
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" checked>
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../__init__/">xrsa</a>
+          
+            <label for="__nav_2_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_2_8">
+          <span class="md-nav__icon md-icon"></span>
+          xrsa
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../aggregate/__init__/">aggregate</a>
+          
+            <label for="__nav_2_8_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          aggregate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/acquisitions/" class="md-nav__link">
+        acquisitions
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/core/" class="md-nav__link">
+        core
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/parameters/" class="md-nav__link">
+        parameters
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_1_4" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../aggregate/rdm/__init__/">rdm</a>
+          
+            <label for="__nav_2_8_1_4">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_1_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          rdm
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/rdm/stim/" class="md-nav__link">
+        stim
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/rdm/trial/" class="md-nav__link">
+        trial
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/summary/" class="md-nav__link">
+        summary
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/trials/" class="md-nav__link">
+        trials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_1_7" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../aggregate/validate/__init__/">validate</a>
+          
+            <label for="__nav_2_8_1_7">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_1_7_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_1_7">
+          <span class="md-nav__icon md-icon"></span>
+          validate
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/validate/main/" class="md-nav__link">
+        main
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../aggregate/validate/trials/" class="md-nav__link">
+        trials
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../cluster/__init__/">cluster</a>
+          
+            <label for="__nav_2_8_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          cluster
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster/agglomerative/" class="md-nav__link">
+        agglomerative
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cluster/spectral/" class="md-nav__link">
+        spectral
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_3" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pipeline/__init__/">pipeline</a>
+          
+            <label for="__nav_2_8_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_3">
+          <span class="md-nav__icon md-icon"></span>
+          pipeline
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_3_1" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pipeline/acquisition/__init__/">acquisition</a>
+          
+            <label for="__nav_2_8_3_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          acquisition
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/acquisition/" class="md-nav__link">
+        acquisition
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/base/" class="md-nav__link">
+        base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_3_1_3" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../pipeline/acquisition/io/__init__/">io</a>
+          
+            <label for="__nav_2_8_3_1_3">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="5" aria-labelledby="__nav_2_8_3_1_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_3_1_3">
+          <span class="md-nav__icon md-icon"></span>
+          io
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/io/base/" class="md-nav__link">
+        base
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/io/core/" class="md-nav__link">
+        core
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/io/rdm/" class="md-nav__link">
+        rdm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/io/respvec/" class="md-nav__link">
+        respvec
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/io/trials/" class="md-nav__link">
+        trials
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/plot/" class="md-nav__link">
+        plot
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pipeline/acquisition/rdm/" class="md-nav__link">
+        rdm
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qc/" class="md-nav__link">
+        qc
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          rdm
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        rdm
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm" class="md-nav__link">
+    xrsa.rdm
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.acq_attrs_2_coords" class="md-nav__link">
+    acq_attrs_2_coords()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.check_input_to_respvec_rdm" class="md-nav__link">
+    check_input_to_respvec_rdm()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.compute_rdm" class="md-nav__link">
+    compute_rdm()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.compute_trial_respvec_rdm" class="md-nav__link">
+    compute_trial_respvec_rdm()
+  </a>
+  
+    <nav class="md-nav" aria-label="compute_trial_respvec_rdm()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#xrsa.rdm.compute_trial_respvec_rdm--simple-trials-index" class="md-nav__link">
+    Simple trials index:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#xrsa.rdm.compute_trial_respvec_rdm--multiindex-trials" class="md-nav__link">
+    MultiIndex trials:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.invert_dist_rbf" class="md-nav__link">
+    invert_dist_rbf()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.prepare_to_align" class="md-nav__link">
+    prepare_to_align()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.sort_stim_rdm_by_stim_ord" class="md-nav__link">
+    sort_stim_rdm_by_stim_ord()
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#xrsa.rdm.sort_trial_rdm_by_stim_ord" class="md-nav__link">
+    sort_trial_rdm_by_stim_ord()
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../respvec/" class="md-nav__link">
+        respvec
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sparsity/__init__/" class="md-nav__link">
+        sparsity
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_8" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../tca/__init__/">tca</a>
+          
+            <label for="__nav_2_8_8">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_8_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_8">
+          <span class="md-nav__icon md-icon"></span>
+          tca
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_8_1" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../tca/parafac/__init__/">parafac</a>
+          
+            <label for="__nav_2_8_8_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_8_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_8_1">
+          <span class="md-nav__icon md-icon"></span>
+          parafac
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tca/parafac/vis/" class="md-nav__link">
+        vis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tca/parafac/xr/" class="md-nav__link">
+        xr
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_8_2" >
+      
+      
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../tca/tucker/__init__/">tucker</a>
+          
+            <label for="__nav_2_8_8_2">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_8_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_8_2">
+          <span class="md-nav__icon md-icon"></span>
+          tucker
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tca/tucker/vis/" class="md-nav__link">
+        vis
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tca/tucker/xr/" class="md-nav__link">
+        xr
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../timeseries/" class="md-nav__link">
+        timeseries
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../trials/" class="md-nav__link">
+        trials
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../utils/" class="md-nav__link">
+        utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_12" >
+      
+      
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../vis/__init__/">vis</a>
+          
+            <label for="__nav_2_8_12">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_8_12_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_12">
+          <span class="md-nav__icon md-icon"></span>
+          vis
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+        
+      
+      <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_8_12_1" >
+      
+      
+        
+          
+        
+      
+      
+        
+        
+        <div class="md-nav__link md-nav__link--index ">
+          <a href="../../vis/clusters/__init__/">clusters</a>
+          
+            <label for="__nav_2_8_12_1">
+              <span class="md-nav__icon md-icon"></span>
+            </label>
+          
+        </div>
+      
+      <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_2_8_12_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2_8_12_1">
+          <span class="md-nav__icon md-icon"></span>
+          clusters
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vis/clusters/spectral/" class="md-nav__link">
+        spectral
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vis/rdm/" class="md-nav__link">
+        rdm
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vis/respvec/" class="md-nav__link">
+        respvec
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../vis/trials/" class="md-nav__link">
+        trials
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  <h1>rdm</h1>
+
+<div class="doc doc-object doc-module">
+
+
+<a id="xrsa.rdm"></a>
+  <div class="doc doc-contents first">
+
+  
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.acq_attrs_2_coords" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">acq_attrs_2_coords</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.acq_attrs_2_coords" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Copy Acquisition fields from attrs (use before concatenating acquisitions)</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">acq_attrs_2_coords</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Copy Acquisition fields from attrs (use before concatenating acquisitions)&quot;&quot;&quot;</span>
+    <span class="c1"># attrs = ds_rdm.attrs.copy(deep=True)</span>
+    <span class="n">attrs</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+            <span class="n">date_imaged</span><span class="o">=</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;acq.date_imaged&#39;</span><span class="p">],</span>
+            <span class="n">fly_num</span><span class="o">=</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;acq.fly_num&#39;</span><span class="p">],</span>
+            <span class="n">thorimage_name</span><span class="o">=</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;acq.thorimage_name&#39;</span><span class="p">]</span>
+            <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.check_input_to_respvec_rdm" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">check_input_to_respvec_rdm</span><span class="p">(</span><span class="n">ds_input</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.check_input_to_respvec_rdm" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Check that the input to <code>compute_trial_respvec_rdm</code> has the required structure.</p>
+<p>If <code>trials</code> is single index, check that</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_input_to_respvec_rdm</span><span class="p">(</span><span class="n">ds_input</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the input to `compute_trial_respvec_rdm` has the required structure.</span>
+
+<span class="sd">    If `trials` is single index, check that</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># check if `trials is a MultiIndex</span>
+    <span class="c1"># multiindex_trials = ds_input.indexes.is_multi(&#39;trials&#39;)</span>
+
+    <span class="c1"># check that it has a `trials` dimension</span>
+    <span class="n">has_trials</span> <span class="o">=</span> <span class="s1">&#39;trials&#39;</span> <span class="ow">in</span> <span class="n">ds_input</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_trials</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Missing `trials` dimension coordinate&#39;</span><span class="p">)</span>
+
+    <span class="n">has_stim</span> <span class="o">=</span> <span class="s1">&#39;stim&#39;</span> <span class="ow">in</span> <span class="n">ds_input</span><span class="p">[</span><span class="s1">&#39;trials&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">has_stim</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Missing `stim` coordinate along `trials` dimension&#39;</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.compute_rdm" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">compute_rdm</span><span class="p">(</span><span class="n">ds_respvec</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="n">input_dim_ord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_dim_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_suffixes</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.compute_rdm" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Compute representation dissimilarity matrix w/ specified dimension order.</p>
+
+  <p><strong>Parameters:</strong></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td><code>ds_respvec</code></td>
+          <td>
+                <code>Union[<span title="xarray">xr</span>.<span title="xarray.Dataset">Dataset</span>, <span title="xarray">xr</span>.<span title="xarray.DataArray">DataArray</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              
+            </div>
+          </td>
+          <td>
+              <em>required</em>
+          </td>
+        </tr>
+        <tr>
+          <td><code>metric</code></td>
+          <td>
+                <code>str</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>pairwise distance metric (see <code>sklearn.metrics.pairwise_distances</code>)</p>
+            </div>
+          </td>
+          <td>
+                <code>&#39;correlation&#39;</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>input_dim_ord</code></td>
+          <td>
+                <code>List[str]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>input dimension order
+- if input_dim_ord has dims (trials, cells), then output_dim_ord has dims (trials, trials)</p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>output_dim_names</code></td>
+          <td>
+                <code>List[str]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>output dimension names for RDM with shape <code>(input_dim_ord[0],
+input_dim_ord[0])</code></p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+        <tr>
+          <td><code>output_suffixes</code></td>
+          <td>
+                <code>List[str]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              <p>suffixes used to generate output dim. names
+- default ['_row', '_col']
+- used only if output_dim_names = <code>None</code></p>
+            </div>
+          </td>
+          <td>
+                <code>None</code>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Returns:</strong></p>
+  <table>
+    <thead>
+      <tr>
+<th>Name</th>        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+<td><code>ds_rdm</code></td>          <td>
+                <code>Union[<span title="xarray">xr</span>.<span title="xarray.Dataset">Dataset</span>, <span title="xarray">xr</span>.<span title="xarray.DataArray">DataArray</span>]</code>
+          </td>
+          <td>
+            <div class="doc-md-description">
+              
+            </div>
+          </td>
+        </tr>
+    </tbody>
+  </table>
+
+<details class="notes" open>
+  <summary>Notes</summary>
+  <p>If <code>input_dim_ord = ['trials', 'cells']</code> and <code>output_suffixes = ['_row', '_col']</code>, then
+output_dim_ord = ['trials_row', 'trials_col']</p>
+</details>
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_rdm</span><span class="p">(</span><span class="n">ds_respvec</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">,</span> <span class="n">input_dim_ord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                <span class="n">output_dim_names</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">output_suffixes</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute representation dissimilarity matrix w/ specified dimension order.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        ds_respvec (Union[xr.Dataset, xr.DataArray]):</span>
+<span class="sd">        metric (str): pairwise distance metric (see `sklearn.metrics.pairwise_distances`)</span>
+<span class="sd">        input_dim_ord (List[str]): input dimension order</span>
+<span class="sd">          - if input_dim_ord has dims (trials, cells), then output_dim_ord has dims (trials, trials)</span>
+<span class="sd">        output_dim_names (List[str]): output dimension names for RDM with shape `(input_dim_ord[0],</span>
+<span class="sd">            input_dim_ord[0])`</span>
+<span class="sd">        output_suffixes (List[str]): suffixes used to generate output dim. names</span>
+<span class="sd">            - default [&#39;_row&#39;, &#39;_col&#39;]</span>
+<span class="sd">            - used only if output_dim_names = `None`</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        ds_rdm (Union[xr.Dataset, xr.DataArray]):</span>
+
+<span class="sd">    Notes:</span>
+<span class="sd">        If `input_dim_ord = [&#39;trials&#39;, &#39;cells&#39;]` and `output_suffixes = [&#39;_row&#39;, &#39;_col&#39;]`, then</span>
+<span class="sd">        output_dim_ord = [&#39;trials_row&#39;, &#39;trials_col&#39;]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">input_dim_ord</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># input dimensions default to the first 2</span>
+        <span class="n">dims</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">ds_respvec</span><span class="o">.</span><span class="n">dims</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">input_dim_ord</span> <span class="o">=</span> <span class="n">dims</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">output_dim_names</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># construct output_dim_names</span>
+        <span class="k">if</span> <span class="n">output_suffixes</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">output_suffixes</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;_row&#39;</span><span class="p">,</span> <span class="s1">&#39;_col&#39;</span><span class="p">]</span>
+        <span class="n">output_dim_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">input_dim_ord</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}{</span><span class="n">suffix</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">suffix</span> <span class="ow">in</span> <span class="n">output_suffixes</span><span class="p">]</span>
+    <span class="c1"># construct output dimension names</span>
+
+    <span class="c1"># print(input_dim_ord)</span>
+    <span class="c1"># print(output_dim_names)</span>
+
+    <span class="n">ds_rdm</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+            <span class="n">metrics</span><span class="o">.</span><span class="n">pairwise_distances</span><span class="p">,</span>
+            <span class="n">ds_respvec</span><span class="p">,</span>
+            <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[</span><span class="n">input_dim_ord</span><span class="p">],</span>
+            <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[</span><span class="n">output_dim_names</span><span class="p">],</span>
+            <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">keep_attrs</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># copy coordinates along the 1st intput dimension to the output dimensions</span>
+    <span class="n">coords</span> <span class="o">=</span> <span class="p">{</span><span class="n">output_dim</span><span class="p">:</span> <span class="p">(</span><span class="n">output_dim</span><span class="p">,</span> <span class="n">ds_respvec</span><span class="o">.</span><span class="n">indexes</span><span class="p">[</span><span class="n">input_dim_ord</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span><span class="o">.</span><span class="n">copy</span><span class="p">())</span>
+              <span class="k">for</span> <span class="n">output_dim</span> <span class="ow">in</span> <span class="n">output_dim_names</span><span class="p">}</span>
+
+    <span class="n">ds_rdm</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">coords</span><span class="p">)</span>
+
+    <span class="n">ds_rdm</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;rdm.metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+    <span class="k">return</span> <span class="n">ds_rdm</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.compute_trial_respvec_rdm" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">compute_trial_respvec_rdm</span><span class="p">(</span><span class="n">ds_respvec</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.compute_trial_respvec_rdm" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Compute RDM w/ dims (..., trial_row, trial_col) from a (..., cells, time) dataset.</p>
+<p><code>ds_respvec</code> must have dimension <code>trials</code>.</p>
+<p>If <code>trials</code> is a MultiIndex, copy all the MultiIndex columns to <code>trial_row</code> and <code>trial_col</code>
+with prefixes "row_" and "col_".</p>
+<h4 id="xrsa.rdm.compute_trial_respvec_rdm--simple-trials-index">Simple trials index:<a class="headerlink" href="#xrsa.rdm.compute_trial_respvec_rdm--simple-trials-index" title="Permanent link">#</a></h4>
+<p>If <code>trials</code> is a simple index, it must also have coordinate <code>stim</code> along the <code>trials</code>
+dimension, and</p>
+<div class="highlight"><pre><span></span><code>trials --&gt; trial_row
+trials --&gt; trial_col
+
+stim --&gt; row_stim (along `trial_row` dimension)
+stim --&gt; col_stim (along `trial_col` dimension)
+
+
+
+&lt;xarray.Dataset&gt;
+Dimensions:        (time: 500, trial_row: 51, trial_col: 51)
+Coordinates:
+  * time           (time) float64 -5.0 -4.95 -4.9 -4.85 ... 19.85 19.9 19.95
+    row_stim       (trial_row) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;
+    row_trial_idx  (trial_row) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50
+    col_stim       (trial_col) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;
+    col_trial_idx  (trial_col) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50
+Dimensions without coordinates: trial_row, trial_col
+</code></pre></div>
+<h4 id="xrsa.rdm.compute_trial_respvec_rdm--multiindex-trials">MultiIndex trials:<a class="headerlink" href="#xrsa.rdm.compute_trial_respvec_rdm--multiindex-trials" title="Permanent link">#</a></h4>
+<p>If <code>trials</code> is a MultiIndex, <code>trial_row</code> and <code>trial_col</code> will also be MultiIndex.
+All coordinates along <code>trials</code> will be copied to dimensions <code>trial_row</code> and <code>trial_col</code>,</p>
+
+<p><strong>Examples:</strong></p>
+    <div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt;</span>
+<span class="go">&lt;xarray.Dataset&gt;</span>
+<span class="go">Dimensions:        (time: 500, trial_row: 51, trial_col: 51)</span>
+<span class="go">Coordinates:</span>
+<span class="go">  * time           (time) float64 -5.0 -4.95 -4.9 -4.85 ... 19.85 19.9 19.95</span>
+<span class="go">    row_stim       (trial_row) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="go">    row_trial_idx  (trial_row) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="go">    col_stim       (trial_col) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="go">    col_trial_idx  (trial_col) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="go">Dimensions without coordinates: trial_row, trial_col</span>
+<span class="go">Data variables:</span>
+<span class="go">    Fc             (time, trial_row, trial_col) float64 0.0 0.5505 ... 1.472 0.0</span>
+<span class="go">    F              (time, trial_row, trial_col) float64 0.0 0.5505 ... 1.472 0.0</span>
+<span class="go">    Fneu           (time, trial_row, trial_col) float64 0.0 nan nan ... nan 0.0</span>
+<span class="go">    spks           (time, trial_row, trial_col) float64 0.0 0.5924 ... 0.0</span>
+<span class="go">    F_zscore       (time, trial_row, trial_col) float64 0.0 1.095 ... 1.247 0.0</span>
+<span class="go">    Fc_zscore      (time, trial_row, trial_col) float64 0.0 1.095 ... 1.247 0.0</span>
+<span class="go">Attributes:</span>
+<span class="go">    baseline.baseline_win:       (-5, 0)</span>
+<span class="go">    baseline.baseline_method:    quantile</span>
+<span class="go">    baseline.baseline_quantile:  0.5</span>
+<span class="go">    distance_metric:             correlation</span>
+</code></pre></div>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">compute_trial_respvec_rdm</span><span class="p">(</span><span class="n">ds_respvec</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;correlation&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute RDM w/ dims (..., trial_row, trial_col) from a (..., cells, time) dataset.</span>
+
+<span class="sd">    `ds_respvec` must have dimension `trials`.</span>
+
+<span class="sd">    If `trials` is a MultiIndex, copy all the MultiIndex columns to `trial_row` and `trial_col`</span>
+<span class="sd">    with prefixes &quot;row_&quot; and &quot;col_&quot;.</span>
+
+<span class="sd">    Simple trials index:</span>
+<span class="sd">    --------------------</span>
+<span class="sd">    If `trials` is a simple index, it must also have coordinate `stim` along the `trials`</span>
+<span class="sd">    dimension, and</span>
+
+<span class="sd">        trials --&gt; trial_row</span>
+<span class="sd">        trials --&gt; trial_col</span>
+
+<span class="sd">        stim --&gt; row_stim (along `trial_row` dimension)</span>
+<span class="sd">        stim --&gt; col_stim (along `trial_col` dimension)</span>
+
+
+
+<span class="sd">        &lt;xarray.Dataset&gt;</span>
+<span class="sd">        Dimensions:        (time: 500, trial_row: 51, trial_col: 51)</span>
+<span class="sd">        Coordinates:</span>
+<span class="sd">          * time           (time) float64 -5.0 -4.95 -4.9 -4.85 ... 19.85 19.9 19.95</span>
+<span class="sd">            row_stim       (trial_row) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="sd">            row_trial_idx  (trial_row) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="sd">            col_stim       (trial_col) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="sd">            col_trial_idx  (trial_col) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="sd">        Dimensions without coordinates: trial_row, trial_col</span>
+
+<span class="sd">    MultiIndex trials:</span>
+<span class="sd">    ------------------</span>
+<span class="sd">    If `trials` is a MultiIndex, `trial_row` and `trial_col` will also be MultiIndex.</span>
+<span class="sd">    All coordinates along `trials` will be copied to dimensions `trial_row` and `trial_col`,</span>
+
+
+<span class="sd">    Examples:</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &lt;xarray.Dataset&gt;</span>
+<span class="sd">        Dimensions:        (time: 500, trial_row: 51, trial_col: 51)</span>
+<span class="sd">        Coordinates:</span>
+<span class="sd">          * time           (time) float64 -5.0 -4.95 -4.9 -4.85 ... 19.85 19.9 19.95</span>
+<span class="sd">            row_stim       (trial_row) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="sd">            row_trial_idx  (trial_row) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="sd">            col_stim       (trial_col) &lt;U12 &#39;ep @ -3.0&#39; &#39;ep @ -3.0&#39; ... &#39;benz @ -3.0&#39;</span>
+<span class="sd">            col_trial_idx  (trial_col) int64 0 1 2 3 4 5 6 7 ... 43 44 45 46 47 48 49 50</span>
+<span class="sd">        Dimensions without coordinates: trial_row, trial_col</span>
+<span class="sd">        Data variables:</span>
+<span class="sd">            Fc             (time, trial_row, trial_col) float64 0.0 0.5505 ... 1.472 0.0</span>
+<span class="sd">            F              (time, trial_row, trial_col) float64 0.0 0.5505 ... 1.472 0.0</span>
+<span class="sd">            Fneu           (time, trial_row, trial_col) float64 0.0 nan nan ... nan 0.0</span>
+<span class="sd">            spks           (time, trial_row, trial_col) float64 0.0 0.5924 ... 0.0</span>
+<span class="sd">            F_zscore       (time, trial_row, trial_col) float64 0.0 1.095 ... 1.247 0.0</span>
+<span class="sd">            Fc_zscore      (time, trial_row, trial_col) float64 0.0 1.095 ... 1.247 0.0</span>
+<span class="sd">        Attributes:</span>
+<span class="sd">            baseline.baseline_win:       (-5, 0)</span>
+<span class="sd">            baseline.baseline_method:    quantile</span>
+<span class="sd">            baseline.baseline_quantile:  0.5</span>
+<span class="sd">            distance_metric:             correlation</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># compute RDM with dims (..., trial_row, trial_col)</span>
+    <span class="n">ds_rdm</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">apply_ufunc</span><span class="p">(</span>
+            <span class="n">metrics</span><span class="o">.</span><span class="n">pairwise_distances</span><span class="p">,</span>
+            <span class="n">ds_respvec</span><span class="p">,</span>
+            <span class="n">input_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;trials&#39;</span><span class="p">,</span> <span class="s1">&#39;cells&#39;</span><span class="p">]],</span>
+            <span class="n">output_core_dims</span><span class="o">=</span><span class="p">[[</span><span class="s1">&#39;trial_row&#39;</span><span class="p">,</span> <span class="s1">&#39;trial_col&#39;</span><span class="p">]],</span>
+            <span class="n">vectorize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">kwargs</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">metric</span><span class="p">,</span> <span class="n">force_all_finite</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">keep_attrs</span><span class="o">=</span><span class="kc">True</span>
+            <span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">ds_respvec</span><span class="o">.</span><span class="n">indexes</span><span class="o">.</span><span class="n">is_multi</span><span class="p">(</span><span class="s1">&#39;trials&#39;</span><span class="p">):</span>
+        <span class="c1"># copy all multiindex columns to trial_row and trial_col</span>
+        <span class="n">mi</span> <span class="o">=</span> <span class="n">ds_respvec</span><span class="p">[</span><span class="s1">&#39;trials&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_index</span><span class="p">()</span>
+        <span class="n">mi</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_frame</span><span class="p">(</span><span class="n">mi</span><span class="o">.</span><span class="n">to_frame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">convert_dtypes</span><span class="p">())</span>
+
+        <span class="n">mi_row</span> <span class="o">=</span> <span class="n">mi</span><span class="o">.</span><span class="n">set_names</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;row_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mi</span><span class="o">.</span><span class="n">names</span><span class="p">})</span>
+        <span class="n">mi_col</span> <span class="o">=</span> <span class="n">mi</span><span class="o">.</span><span class="n">set_names</span><span class="p">({</span><span class="n">k</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;col_</span><span class="si">{</span><span class="n">k</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">mi</span><span class="o">.</span><span class="n">names</span><span class="p">})</span>
+
+        <span class="n">ds_rdm</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_rdm</span>
+                  <span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span><span class="n">trial_row</span><span class="o">=</span><span class="n">mi_row</span><span class="p">,</span> <span class="n">trial_col</span><span class="o">=</span><span class="n">mi_col</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="s1">&#39;trial_row&#39;</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="s1">&#39;trial_col&#39;</span><span class="p">)</span>
+                  <span class="p">)</span>
+
+        <span class="n">row_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mi_row</span><span class="o">.</span><span class="n">to_flat_index</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mi_row</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="n">row_dtypes</span><span class="p">):</span>
+            <span class="n">ds_rdm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="n">col_dtypes</span> <span class="o">=</span> <span class="p">[</span><span class="nb">type</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">mi_col</span><span class="o">.</span><span class="n">to_flat_index</span><span class="p">()[</span><span class="mi">0</span><span class="p">]]</span>
+        <span class="k">for</span> <span class="n">n</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mi_col</span><span class="o">.</span><span class="n">names</span><span class="p">,</span> <span class="n">col_dtypes</span><span class="p">):</span>
+            <span class="n">ds_rdm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+        <span class="n">ds_rdm</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_rdm</span>
+                  <span class="o">.</span><span class="n">set_xindex</span><span class="p">(</span><span class="n">mi_row</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+                  <span class="o">.</span><span class="n">set_xindex</span><span class="p">(</span><span class="n">mi_col</span><span class="o">.</span><span class="n">names</span><span class="p">)</span>
+                  <span class="p">)</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">trial_idx</span> <span class="o">=</span> <span class="n">ds_respvec</span><span class="o">.</span><span class="n">trials</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">ds_rdm</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">assign_coords</span><span class="p">(</span>
+                <span class="n">row_stim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;trial_row&#39;</span><span class="p">,</span> <span class="n">ds_respvec</span><span class="o">.</span><span class="n">stim</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
+                <span class="n">row_trial_idx</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;trial_row&#39;</span><span class="p">,</span> <span class="n">trial_idx</span><span class="p">),</span>
+                <span class="n">col_stim</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;trial_col&#39;</span><span class="p">,</span> <span class="n">ds_respvec</span><span class="o">.</span><span class="n">stim</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
+                <span class="n">col_trial_idx</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;trial_col&#39;</span><span class="p">,</span> <span class="n">trial_idx</span><span class="p">)</span>
+                <span class="p">)</span>
+
+    <span class="n">ds_rdm</span><span class="o">.</span><span class="n">attrs</span><span class="p">[</span><span class="s1">&#39;rdm.metric&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">metric</span>
+
+    <span class="k">return</span> <span class="n">ds_rdm</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.invert_dist_rbf" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">invert_dist_rbf</span><span class="p">(</span><span class="n">da_euc</span><span class="p">,</span> <span class="n">gamma</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.invert_dist_rbf" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>gamma = 1 / num_features</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">invert_dist_rbf</span><span class="p">(</span><span class="n">da_euc</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;gamma = 1 / num_features&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">da_euc</span><span class="o">.</span><span class="n">map_blocks</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">x</span> <span class="o">/</span> <span class="n">gamma</span><span class="p">)),</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.prepare_to_align" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">prepare_to_align</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.prepare_to_align" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Set indexes and drop coords before using xr.align</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">prepare_to_align</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Set indexes and drop coords before using xr.align&quot;&quot;&quot;</span>
+    <span class="n">ds_rdm_prepared</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds_rdm</span>
+                       <span class="o">.</span><span class="n">reset_index</span><span class="p">([</span><span class="s1">&#39;trial_row&#39;</span><span class="p">,</span> <span class="s1">&#39;trial_col&#39;</span><span class="p">])</span>
+                       <span class="o">.</span><span class="n">reset_coords</span><span class="p">([</span><span class="s1">&#39;row_trial_idx&#39;</span><span class="p">,</span> <span class="s1">&#39;col_trial_idx&#39;</span><span class="p">],</span> <span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                       <span class="o">.</span><span class="n">set_xindex</span><span class="p">(</span><span class="n">coord_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;row_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;row_stim_occ&#39;</span><span class="p">])</span>
+                       <span class="o">.</span><span class="n">set_xindex</span><span class="p">(</span><span class="n">coord_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;col_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;col_stim_occ&#39;</span><span class="p">])</span>
+                       <span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="s1">&#39;trial_row&#39;</span><span class="p">)</span>
+                       <span class="o">.</span><span class="n">sortby</span><span class="p">(</span><span class="s1">&#39;trial_col&#39;</span><span class="p">)</span>
+                       <span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds_rdm_prepared</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.sort_stim_rdm_by_stim_ord" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">sort_stim_rdm_by_stim_ord</span><span class="p">(</span><span class="n">ds_stim_rdm</span><span class="p">,</span> <span class="n">stim_ord</span><span class="p">,</span> <span class="n">row_coord</span><span class="o">=</span><span class="s1">&#39;stim_row&#39;</span><span class="p">,</span> <span class="n">col_coord</span><span class="o">=</span><span class="s1">&#39;stim_col&#39;</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.sort_stim_rdm_by_stim_ord" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sort ds_stim_rdm to match desired stimulus ordering.</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sort_stim_rdm_by_stim_ord</span><span class="p">(</span><span class="n">ds_stim_rdm</span><span class="p">,</span> <span class="n">stim_ord</span><span class="p">,</span> <span class="n">row_coord</span><span class="o">=</span><span class="s1">&#39;stim_row&#39;</span><span class="p">,</span> <span class="n">col_coord</span><span class="o">=</span><span class="s1">&#39;stim_col&#39;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort ds_stim_rdm to match desired stimulus ordering.&quot;&quot;&quot;</span>
+
+    <span class="n">row_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="n">stim_ord</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ds_stim_rdm</span><span class="p">[</span><span class="n">row_coord</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()])</span>
+    <span class="n">col_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="n">stim_ord</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ds_stim_rdm</span><span class="p">[</span><span class="n">col_coord</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()])</span>
+    <span class="n">ds_stim_rdm_sorted</span> <span class="o">=</span> <span class="n">ds_stim_rdm</span><span class="p">[{</span><span class="n">row_coord</span><span class="p">:</span> <span class="n">row_idx</span><span class="p">}][{</span><span class="n">col_coord</span><span class="p">:</span> <span class="n">col_idx</span><span class="p">}]</span>
+
+    <span class="k">return</span> <span class="n">ds_stim_rdm_sorted</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+
+<h2 id="xrsa.rdm.sort_trial_rdm_by_stim_ord" class="doc doc-heading">
+<code class="highlight language-python"><span class="n">sort_trial_rdm_by_stim_ord</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">,</span> <span class="n">stim_ord</span><span class="p">,</span> <span class="n">use_stim_occ</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#xrsa.rdm.sort_trial_rdm_by_stim_ord" class="headerlink" title="Permanent link">#</a></h2>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Sort ds_rdm to match desired stimulus ordering, in coordinates row_stim and col_stim.</p>
+<p>ds_rdm (xr.Dataset): has dimensions ('trial_row', 'trial_col'), and coords ('row_stim',
+  'col_stim')
+stim_ord (list): stimulus order for coords ('row_stim', 'col_stim')</p>
+
+      <details class="quote">
+        <summary>Source code in <code>src/xrsa/rdm/__init__.py</code></summary>
+        <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">sort_trial_rdm_by_stim_ord</span><span class="p">(</span><span class="n">ds_rdm</span><span class="p">,</span> <span class="n">stim_ord</span><span class="p">,</span> <span class="n">use_stim_occ</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Sort ds_rdm to match desired stimulus ordering, in coordinates row_stim and col_stim.</span>
+
+<span class="sd">    ds_rdm (xr.Dataset): has dimensions (&#39;trial_row&#39;, &#39;trial_col&#39;), and coords (&#39;row_stim&#39;,</span>
+<span class="sd">      &#39;col_stim&#39;)</span>
+<span class="sd">    stim_ord (list): stimulus order for coords (&#39;row_stim&#39;, &#39;col_stim&#39;)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">use_stim_occ</span><span class="p">:</span>
+        <span class="n">df_row</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">trial_row</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df_row</span><span class="p">[</span><span class="s1">&#39;row_stim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df_row</span><span class="p">[</span><span class="s1">&#39;row_stim&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                            <span class="n">categories</span><span class="o">=</span><span class="n">stim_ord</span><span class="p">)</span>
+        <span class="n">row_idx</span> <span class="o">=</span> <span class="n">df_row</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;row_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;row_stim_occ&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+
+        <span class="n">df_col</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">trial_col</span><span class="o">.</span><span class="n">to_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;col_stim&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Categorical</span><span class="p">(</span><span class="n">df_col</span><span class="p">[</span><span class="s1">&#39;col_stim&#39;</span><span class="p">],</span> <span class="n">ordered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                                            <span class="n">categories</span><span class="o">=</span><span class="n">stim_ord</span><span class="p">)</span>
+        <span class="n">col_idx</span> <span class="o">=</span> <span class="n">df_col</span><span class="o">.</span><span class="n">sort_values</span><span class="p">([</span><span class="s1">&#39;col_stim&#39;</span><span class="p">,</span> <span class="s1">&#39;col_stim_occ&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">to_list</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">row_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="n">stim_ord</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">row_stim</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()])</span>
+        <span class="n">col_idx</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">([</span><span class="n">stim_ord</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">col_stim</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()])</span>
+
+    <span class="n">ds_rdm_sorted</span> <span class="o">=</span> <span class="n">ds_rdm</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">trial_row</span><span class="o">=</span><span class="n">row_idx</span><span class="p">)</span><span class="o">.</span><span class="n">isel</span><span class="p">(</span><span class="n">trial_col</span><span class="o">=</span><span class="n">col_idx</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ds_rdm_sorted</span>
+</code></pre></div></td></tr></table></div>
+      </details>
+  </div>
+
+</div>
+
+
+
+  </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes", "toc.follow", "toc.integrate"], "search": "../../../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.b425cdc4.min.js"></script>
+      
+    
+  </body>
+</html>
