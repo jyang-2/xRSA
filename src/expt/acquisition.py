@@ -4,6 +4,7 @@ import json
 import xarray as xr
 from attrs import define, field
 import attrs
+import pandas as pd
 
 
 def get_proc_dir(file):
@@ -35,6 +36,11 @@ def load_stim_list(stim_list_file):
     return stim_list['stim_list_flatstr']
 
 
+def load_stim_table(stim_csv_file):
+    return pd.read_csv(stim_csv_file, sep='\t')
+
+
+
 # %%
 
 @define
@@ -45,14 +51,15 @@ class Acquisition:
     fly_num: int
     thorimage_name: str
     proc_dir: Path
-    thorsync_name: str = field(init=False)
+    thorsync_name: str = field(init=False, default=None)
     mov_dir: Path = field(init=False)
     timestamps_file: Path = field(init=False)
     experiment_xml_file: Path = field(init=False)
     stim_list_file: Path = field(init=False)
     stat_file: Path = field(init=False)
-    timestamps: dict = field(init=False)
-    stim_list: list = field(init=False)
+    timestamps: dict = field(init=False, factory=dict)
+    stim_list: list = field(init=False, factory=list)
+    df_stim: pd.DataFrame = field(init=False, factory=pd.DataFrame, repr=False)
 
     # def __init__(self, date_imaged: str, fly_num: int, thorimage_name: str,
     #              proc_dir: Path,
@@ -96,6 +103,8 @@ class Acquisition:
             tstr = "{} fly {:02d}: {}".format(self.date_imaged,
                                               self.fly_num,
                                               self.thorimage_name)
+        else:
+            raise ValueError("")
         return tstr
 
     def filename_base(self):
@@ -106,3 +115,14 @@ class Acquisition:
 
     def load_stim_list(self):
         self.stim_list = load_stim_list(self.stim_list_file)
+
+    def load_df_stim(self):
+        return pd.read_csv(self.mov_dir.joinpath('df_stim.csv'), sep="\t", index_col=0)
+
+    def to_dict(self):
+        dacq = attrs.asdict(self,
+                            filter=attrs.filters.include('date_imaged',
+                                                         'fly_num',
+                                                         'thorimage_name'))
+        dacq['title'] = self.title()
+        return dacq
